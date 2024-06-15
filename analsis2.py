@@ -1,12 +1,10 @@
+import streamlit as st
 import pandas as pd
-import numpy as np  # Asegúrate de que esta línea esté presente
+import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def create_heatmap(csv_file):
-    # Cargar datos desde un archivo CSV
-    data = pd.read_csv(csv_file)
-
+def create_heatmap(data):
     # Asegurarse de que las columnas que se van a correlacionar son numéricas
     numeric_cols = data.select_dtypes(include=[np.number]).columns
     data = data[numeric_cols]
@@ -28,6 +26,11 @@ def create_heatmap(csv_file):
     # Mostrar el gráfico
     plt.show()
 
-# Ruta del archivo, ajusta según tu sistema de archivos
-csv_file_path = 'Tokyo 2021 dataset v4.csv'
-create_heatmap(csv_file_path)
+# Streamlit UI
+st.title('Aplicación para Crear Heatmap de Correlación')
+
+# Carga de archivo
+uploaded_file = st.file_uploader("Carga tu archivo CSV", type=['csv'])
+if uploaded_file is not None:
+    data = pd.read_csv(uploaded_file)
+    create_heatmap(data)
