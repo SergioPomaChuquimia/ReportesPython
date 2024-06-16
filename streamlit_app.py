@@ -30,12 +30,12 @@ def create_heatmap(data):
     numeric_cols = data.select_dtypes(include=[np.number]).columns
     data = data[numeric_cols]
     correlation_matrix = data.corr()
-    plt.figure(figsize=(10, 8))
-    sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=.5)
-    plt.title('Heatmap de Correlación')
-    plt.xlabel('Variables')
-    plt.ylabel('Variables')
-    st.pyplot()  # Usando st.pyplot() para mostrar el gráfico en Streamlit
+    fig, ax = plt.subplots(figsize=(10, 8))  # Crear fig y ax aquí
+    sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=.5, ax=ax)
+    ax.set_title('Heatmap de Correlación')
+    ax.set_xlabel('Variables')
+    ax.set_ylabel('Variables')
+    st.pyplot(fig)  # Usar fig en st.pyplot
 
 # Verificación de que los datos han sido cargados correctamente para la generación del heatmap
 if 'data' in locals():
