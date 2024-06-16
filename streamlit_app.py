@@ -10,7 +10,9 @@ st.title('Análisis Integral de Datos de Tokyo 2021')
 
 # Subtítulo y carga de datos de Tokyo
 st.subheader('Visualización de Datos de Tokyo 2021')
-data_path = os.path.join('Tokyo 2021 dataset v4.csv')
+data_path = 'Tokyo 2021 dataset v4.csv'
+
+# Verificación si el archivo existe y carga de datos
 if os.path.exists(data_path):
     data = pd.read_csv(data_path)
     st.write("Aquí se muestra el dataset cargado:")
