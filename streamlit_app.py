@@ -37,9 +37,9 @@ def create_heatmap(data):
     plt.ylabel('Variables')
     st.pyplot()  # Usando st.pyplot() para mostrar el gráfico en Streamlit
 
-# UI para heatmap de correlación
-st.subheader('Crea un Heatmap de Correlación')
-uploaded_file = st.file_uploader("Carga tu archivo CSV para análisis de correlación:", type=['csv'])
-if uploaded_file is not None:
-    data = pd.read_csv(uploaded_file)
+# Verificación de que los datos han sido cargados correctamente para la generación del heatmap
+if 'data' in locals():
+    st.subheader('Heatmap de Correlación')
     create_heatmap(data)
+else:
+    st.error("No se ha cargado el dataset de Tokyo 2021 para la generación de heatmap.")
